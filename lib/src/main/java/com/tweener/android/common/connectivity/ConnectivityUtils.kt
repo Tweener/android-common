@@ -12,8 +12,8 @@ class ConnectivityUtils {
     companion object {
         fun isNetworkAvailable(context: Context): Boolean {
             val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val activeNetworkInfo = connectivityManager.activeNetworkInfo
-            return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
+            val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
+            return activeNetwork?.isConnectedOrConnecting == true
         }
 
         fun getConnectivityStatus(context: Context): ConnectivityStatus {
@@ -22,7 +22,7 @@ class ConnectivityUtils {
             val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             val activeNetworkInfo = connectivityManager.activeNetworkInfo
 
-            if (activeNetworkInfo != null && activeNetworkInfo.state == NetworkInfo.State.CONNECTED) {
+            if (activeNetworkInfo?.state == NetworkInfo.State.CONNECTED) {
                 if (activeNetworkInfo.type == ConnectivityManager.TYPE_WIFI) {
                     connectivityStatus = ConnectivityStatus.WIFI
                 } else if (activeNetworkInfo.type == ConnectivityManager.TYPE_MOBILE) {
