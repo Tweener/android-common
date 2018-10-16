@@ -36,8 +36,14 @@ class SharedPreferencesUtils {
                 is Boolean -> prefs.edit().putBoolean(key, value).apply()
                 is Long -> prefs.edit().putLong(key, value).apply()
                 is Float -> prefs.edit().putFloat(key, value).apply()
+
                 else -> error("Only primitive types can be stored in SharedPreferences")
             }
+        }
+
+        fun remove(context: Context, key: String) {
+            val prefs = getPrefs(context)
+            prefs.edit().remove(key).apply()
         }
 
         fun clear(context: Context) {
