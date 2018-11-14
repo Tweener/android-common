@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.dcendents.android-maven' // For Jitpack publishing
 apply from: '../publish_local.gradle' // For local publishing (~/.m2)
 
-group = 'com.github.Tweener'
+group = 'com.github.tweener'
 
 project.ext {
     artifactId = 'android-common'
