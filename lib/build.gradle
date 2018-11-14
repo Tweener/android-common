@@ -2,9 +2,16 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.github.dcendents.android-maven'
+
+apply plugin: 'com.github.dcendents.android-maven' // For Jitpack publishing
+apply from: '../publish_local.gradle' // For local publishing (~/.m2)
 
 group = 'com.github.Tweener'
+
+project.ext {
+    artifactId = 'android-common'
+    groupId = group
+}
 
 android {
     compileSdkVersion 28
@@ -13,7 +20,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
-        versionName "0.1.71"
+        versionName "0.1.73"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -36,10 +43,4 @@ dependencies {
     // Anko: library which makes Android application development faster and easier
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
     implementation "org.jetbrains.anko:anko-design:$anko_version"
-
-    // Dagger
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    testImplementation "com.google.dagger:dagger:$daggerVersion"
-    androidTestImplementation "com.google.dagger:dagger:$daggerVersion"
 }
